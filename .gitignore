@@ -1,0 +1,24 @@
+# Dependências
+# A pasta node_modules contém todas as bibliotecas de terceiros (express, socket.io, etc.).
+# É enorme e deve ser regenerada localmente por quem for clonar o projeto (usando 'npm install').
+/node_modules
+
+# Arquivos de Lock
+# Estes são arquivos gerados automaticamente pelo npm para garantir que todos usem as mesmas versões de dependência.
+# Geralmente, eles não são estritamente necessários para o versionamento do código.
+/package-lock.json
+
+# Logs e Cache do NPM
+# Arquivos de log e cache gerados pelo sistema.
+npm-debug.log
+.npm
+
+# Logs do Node.js
+# Logs de debug gerados por Node.js ou V8 (usados em produção, mas raramente em desenvolvimento).
+*.log
+
+# Variáveis de Ambiente e Configurações de IDE
+# Arquivos de configuração que são específicos da sua máquina/ambiente (opcional, mas recomendado).
+.env 
+.vscode/
+.idea/
