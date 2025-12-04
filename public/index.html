@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz Game Arena</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <div id="container">
+        <h1 class="arena-title">QUIZ GAME ARENA <span class="emoji-note">🏆</span></h1>
+        <p class="info-bar">Sessão: <strong id="socket-id">Conectando...</strong> | Nome: <strong id="player-name-display">...</strong></p>
+
+        <div id="name-input-view" class="arena-panel">
+            <h2 class="section-header">Seja bem-vindo(a) à Arena!</h2>
+            <form id="form-set-name">
+                <input type="text" id="name-input" placeholder="Digite seu nome de jogador" required class="text-input">
+                <button type="submit" class="btn-start-arena">JOGAR!</button>
+            </form>
+        </div>
+
+        <div id="lobby" style="display:none;" class="arena-panel">
+            <h2 class="section-header">Escolha seu Campo:</h2>
+            <button id="btn-criar-sala" class="btn-primary-arena">Criar Nova Partida (Host)</button>
+            
+            <div class="separator">OU</div>
+            
+            <form id="form-entrar-sala">
+                <input type="text" id="pin-input" placeholder="PIN da Partida" maxlength="5" required class="text-input">
+                <button type="submit" class="btn-secondary-arena">Entrar na Partida</button>
+            </form>
+            <p id="feedback-mensagem-lobby" class="feedback-msg"></p>
+        </div>
+
+        <div id="host-view" style="display:none;" class="host-panel-arena">
+            <div class="display-box-arena">
+                <p class="display-label">PIN DA PARTIDA:</p>
+                <strong id="host-pin-display" class="pin-display-xl"></strong>
+            </div>
+            
+            <button id="btn-iniciar-jogo" class="btn-start-game">INICIAR PARTIDA</button>
+            
+            <div class="host-details-grid">
+                <div class="qr-section">
+                    <h4 class="detail-header">Acesso Rápido:</h4>
+                    <div id="qrcode-display" class="qr-code"></div>
+                </div>
+                <div class="players-section">
+                    <h4 class="detail-header">📊 Jogadores no Lobby:</h4>
+                    <ul id="host-lobby-lista" class="player-list"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-view" style="display:none;" class="player-game-view">
+            <p class="pin-status">Partida: <strong id="player-pin-display"></strong></p>
+            
+            <div id="placar" class="ranking-mini">
+                <h2 class="ranking-header">🏆 PLACAR</h2>
+                <ul id="placar-lista" class="player-list"></ul>
+            </div>
+
+            <div id="jogo" class="question-area">
+                <div id="timer-display">20s</div> 
+                
+                <p id="charada-texto" class="question-text"></p>
+                
+                <div id="opcoes-container" class="opcoes-grid">
+                    </div>
+
+                <p id="feedback-mensagem-jogo" class="feedback-msg"></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="client.js"></script>
+</body>
+</html>
