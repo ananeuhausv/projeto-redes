@@ -83,8 +83,7 @@ function updateHostPlacar(jogadores) {
 // RENDERIZA OPÇÕES (CORRIGIDO PARA HOST/PROJETOR)
 function renderizarOpcoes(opcoes) {
 	// Cores e Ícones
-	const cores = ["#dc3545", "#ffc107", "#007bff", "#4CAF50"]; // Vermelho, Amarelo, Azul, Verde // --- LÓGICA DO JOGADOR (PLAYER - TEXTO DA OPÇÃO) ---
-
+	const cores = ["#673ab7",  "#2196f3","#ff9800", "#e91e63"];
 	if (!isHost) {
 		opcoesContainer.innerHTML = "";
 		opcoesContainer.style.display = "grid";
@@ -271,9 +270,6 @@ document.addEventListener("DOMContentLoaded", () => {
 			data.pin
 		}`;
 		new QRCode(qrcodeDisplay, { text: url, width: 180, height: 180 });
-		const p = document.createElement("p");
-		p.textContent = url;
-		qrcodeDisplay.appendChild(p);
 
 		hostPlacarDiv.style.display = "none";
 	}); // Jogador entrou (PLAYER)
