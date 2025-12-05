@@ -6,7 +6,7 @@
 
 ## 📖 Sobre o Projeto
 
-O **Quiz Game Arena** é um jogo de perguntas e respostas (Quiz) multiplayer em tempo real, inspirado na mecânica do Kahoot!.
+O **Quiz Game Arena** é um jogo de perguntas e respostas (Quiz) multiplayer em tempo real, inspirado na mecânica do *Kahoot!*.
 
 O sistema utiliza uma arquitetura **Cliente-Servidor** baseada em WebSockets para garantir baixa latência na comunicação entre o **Host** (tela principal do jogo, geralmente um projetor ou PC) e os **Players** (dispositivos móveis funcionando como controles).
 
@@ -38,6 +38,7 @@ Para rodar este projeto localmente, você precisa ter instalado na sua máquina:
 * **[Node.js](https://nodejs.org/)** (Versão 14 ou superior)
 * **npm** (Gerenciador de pacotes, já incluso no Node)
 
+
 ## 🔧 Como Rodar o Projeto
 
 Siga os passos abaixo para executar o servidor na sua máquina:
@@ -65,7 +66,7 @@ No terminal, execute:
 
 Bash
 
-node server.js
+node server.js´´´
 4. Acessar o Jogo
 O terminal exibirá uma mensagem como:
 
