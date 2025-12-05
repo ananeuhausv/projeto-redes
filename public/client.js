@@ -1,7 +1,3 @@
-// public/client.js (COMPLETO E CORRIGIDO)
-console.log("JS CARREGOU");
-alert("JS carregou");
-
 const socket = io();
 
 // ELEMENTOS GERAIS
@@ -48,6 +44,20 @@ function showView(id) {
 	hostViewDiv.style.display = id === "host" ? "block" : "none";
 	hostGameViewDiv.style.display = id === "host-game" ? "block" : "none";
 	playerGameViewDiv.style.display = id === "player-game" ? "block" : "none";
+
+	// Suporte explícito para a view de ranking
+	const rankingView = document.getElementById("ranking-view");
+	if (rankingView) {
+		rankingView.style.display =
+			id === "ranking" || id === "ranking-view" ? "block" : "none";
+	}
+
+	// Quando mostramos a view de ranking, garantimos esconder a view do host (se estiver visível)
+	if (id === "ranking" || id === "ranking-view") {
+		if (hostGameViewDiv) hostGameViewDiv.style.display = "none";
+		if (hostViewDiv) hostViewDiv.style.display = "none";
+		if (playerGameViewDiv) playerGameViewDiv.style.display = "none";
+	}
 }
 
 // PLACAR GERAL (USADO PELO HOST)
@@ -63,7 +73,7 @@ function updateHostPlacar(jogadores) {
 		hostLobbyLista.appendChild(liLobby);
 
 		const liPlacar = document.createElement("li");
-		liPlacar.innerHTML = `**${index + 1}.** ${j.nome} | <strong>${
+		liPlacar.innerHTML = `<strong>${index + 1}.</strong> ${j.nome.toUpperCase()} | <strong>${
 			j.pontos
 		}</strong> pts`;
 		hostGamePlacarLista.appendChild(liPlacar);
@@ -83,10 +93,8 @@ function renderizarOpcoes(opcoes) {
 			.forEach((b) => (b.disabled = false));
 
 		opcoes.forEach((opcao, i) => {
-			const btn = document.createElement("button"); // CORREÇÃO FINAL: Ícone + Texto no botão do jogador
-			btn.innerHTML = `<span class="icone-opcao">${
-				icones[i % 4]
-			}</span><span class="texto-opcao-player">${opcao}</span>`;
+			const btn = document.createElement("button");  
+			btn.innerHTML = `<span class="texto-opcao-player">${opcao}</span>`;
 			btn.style.backgroundColor = cores[i % 4];
 
 			btn.onclick = () => {
@@ -101,34 +109,34 @@ function renderizarOpcoes(opcoes) {
 			opcoesContainer.appendChild(btn);
 		});
 	} // --- LÓGICA DO HOST (PROJETOR - BLOCOS COLORIDOS COM TEXTO) ---
-	else {
-		// Remove qualquer grade anterior do placar antes de renderizar a nova
-		const oldGrid = hostPlacarDiv.querySelector(".host-opcoes-grid");
-		if (oldGrid) hostPlacarDiv.removeChild(oldGrid);
+// 	else {
+// 		// Remove qualquer grade anterior do placar antes de renderizar a nova
+// 		const oldGrid = hostPlacarDiv.querySelector(".host-opcoes-grid");
+// 		if (oldGrid) hostPlacarDiv.removeChild(oldGrid);
 
-		// Renderiza a nova grade de opções com texto e cor
-		let tempGrid = document.createElement("div");
-		tempGrid.className = "host-opcoes-grid";
+// 		// Renderiza a nova grade de opções com texto e cor
+// 		let tempGrid = document.createElement("div");
+// 		tempGrid.className = "host-opcoes-grid";
 
-		opcoes.forEach((jogador, i) => {
-			// Aqui 'opcoes' na verdade é o array de jogadores do placar para o host
-			const bloco = document.createElement("div");
-			bloco.className = "host-opcao-bloco"; // Aqui o bloco é colorido para mostrar a opção correta (se tivéssemos o índice) // Como estamos reutilizando para mostrar o ranking final, usamos a cor primária
-			bloco.style.backgroundColor = cores[i % 4];
+// 		opcoes.forEach((jogador, i) => {
+// 			// Aqui 'opcoes' na verdade é o array de jogadores do placar para o host
+// 			const bloco = document.createElement("div");
+// 			bloco.className = "host-opcao-bloco"; // Aqui o bloco é colorido para mostrar a opção correta (se tivéssemos o índice) // Como estamos reutilizando para mostrar o ranking final, usamos a cor primária
+// 			bloco.style.backgroundColor = cores[i % 4];
 
-			bloco.style.color = "white";
+// 			bloco.style.color = "white";
 
-			bloco.innerHTML = `
-                <span class="icone-opcao-host">${icones[i % 4]}</span>
-                <span class="texto-opcao-host">Opção ${i + 1}</span> 
-            `;
-			tempGrid.appendChild(bloco);
-		});
+// 			bloco.innerHTML = `
+//                 <span class="icone-opcao-host">${icones[i % 4]}</span>
+//                 <span class="texto-opcao-host">Opção ${i + 1}</span> 
+//             `;
+// 			tempGrid.appendChild(bloco);
+// 		});
 
-		// Adiciona o bloco de opções ANTES do controle de strip
-		const controlStrip = document.querySelector(".host-control-strip-bottom");
-		if (controlStrip) hostPlacarDiv.insertBefore(tempGrid, controlStrip);
-	}
+// 		// Adiciona o bloco de opções ANTES do controle de strip
+// 		const controlStrip = document.querySelector(".host-control-strip-bottom");
+// 		if (controlStrip) hostPlacarDiv.insertBefore(tempGrid, controlStrip);
+// 	}
 }
 
 // --- FUNÇÃO DE FEEDBACK VISUAL ---
@@ -142,53 +150,69 @@ function flashResult(isCorrect) {
 }
 
 // --- FUNÇÃO PARA MOSTRAR O RANKING FINAL ---
+// --- FUNÇÃO PARA MOSTRAR O RANKING FINAL (CORRIGIDA) ---
 function showFinalRanking(placar) {
-	// Esconde todas as outras views
-	showView("ranking"); // Usa o hostGameViewDiv ou um novo container, adaptando para o ranking final
+    
+    // 1. LÓGICA DO HOST: Mostra a tabela de classificação (Podium)
+    if (isHost) {
+        showView("ranking-view"); // Só o Host muda para a view de Ranking
 
-	const finalRankingDiv = hostGameViewDiv; // Substitui o conteúdo da view do host para mostrar o ranking final
+        // Pega o container/ul já presente no HTML
+        const finalPlacarLista = document.getElementById("final-ranking-list");
+        if (!finalPlacarLista)
+            return console.error("Elemento #final-ranking-list não encontrado.");
 
-	finalRankingDiv.innerHTML = `
-        <div class="ranking-final-box">
-            <h2 class="final-header">QUIZ FINALIZADO! 🥇</h2>
-            <h3 class="final-subheader">CLASSIFICAÇÃO FINAL</h3>
-            <ul id="final-placar-lista" class="player-list"></ul>
-            <button onclick="window.location.reload()" class="btn-start-arena" style="width: 250px; margin-top: 30px;">
-                NOVA PARTIDA
-            </button>
-        </div>
-    `;
+        // Limpa e preenche
+        finalPlacarLista.innerHTML = "";
 
-	const finalPlacarLista = document.getElementById("final-placar-lista"); // Sortear e renderizar o placar final
+        const sorted = placar.slice().sort((a, b) => b.pontos - a.pontos);
 
-	const sorted = placar.sort((a, b) => b.pontos - a.pontos);
+        sorted.forEach((j, index) => {
+            const li = document.createElement("li");
+            let medal = "";
+            if (index === 0) medal = "🥇";
+            else if (index === 1) medal = "🥈";
+            else if (index === 2) medal = "🥉";
 
-	sorted.forEach((j, index) => {
-		const li = document.createElement("li");
-		li.innerHTML = `
-            <span class="rank-position">#${index + 1}</span> 
-            ${j.nome} 
-            <strong class="final-score">${j.pontos} pts</strong>
-        `;
-		finalPlacarLista.appendChild(li);
-	}); // Para jogadores, apenas mostra uma mensagem
+            li.innerHTML = `
+                <div class="ranking-item">
+                    <span class="rank-badge ${index < 3 ? "medal" : ""}">
+                        ${medal || "#" + (index + 1)}
+                    </span>
+                    <span class="player-name">${j.nome}</span>
+                    <span class="player-points">${j.pontos} pts</span>
+                </div>
+            `;
+            finalPlacarLista.appendChild(li);
+        });
 
-	if (!isHost) {
-		playerGameViewDiv.innerHTML = `
-            <div class="ranking-final-box">
-                <h2 class="final-header">QUIZ FINALIZADO!</h2>
-                <p class="feedback-msg">Aguarde o Host para ver o ranking final.</p>
-                <p class="final-subheader">Seus Pontos: <strong>${
-			(placar.find((j) => j.id === socket.id) || { pontos: 0 }).pontos
-		}</strong></p>
-            </div>
-            <button onclick="window.location.reload()" class="btn-start-arena" style="width: 250px; margin-top: 30px;">
-                VOLTAR
-            </button>
-        `;
-		playerGameViewDiv.style.display = "block";
-		hostGameViewDiv.style.display = "none";
-	}
+        // Garante que as outras views do host sumam
+        if (hostGameViewDiv) hostGameViewDiv.style.display = "none";
+        if (hostViewDiv) hostViewDiv.style.display = "none";
+    } 
+    
+    // 2. LÓGICA DO JOGADOR: Mostra resultado individual
+    else {
+        showView("player-game"); // O Jogador permanece na área de jogo (que mudará o conteúdo)
+
+        playerGameViewDiv.innerHTML = `
+            <div class="player-final-box">
+                <h2 class="player-final-title">🎉 Quiz Finalizado! 🎉</h2>
+
+                <p class="player-final-sub"> Obrigado por jogar! </p>
+
+                <div class="player-score-card">
+                    <span class="score-label">Seu total:</span>
+                    <span class="score-value">${
+                        (placar.find((p) => p.id === socket.id) || { pontos: 0 }).pontos
+                    } pontos</span>
+                </div>
+
+                <button onclick="window.location.reload()" class="btn-final-return">Jogar Novamente</button>
+            </div>
+        `;
+        playerGameViewDiv.style.display = "block";
+    }
 }
 
 // AÇÕES DO CLIENTE
@@ -322,7 +346,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				feedbackScoreAcerto.textContent = `+${pontosGanhos} pontos!`;
 				flashResult(true);
 			} else {
-				feedbackJogo.textContent = `❌ ERROU/Não Respondeu. ${dados.mensagem}`;
+				feedbackJogo.textContent = `❌ ERROU! ${dados.mensagem}`;
 				flashResult(false);
 			}
 
@@ -340,6 +364,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}); // NOVO: Jogo Finalizado (Ciclo de Perguntas Completo)
 
 	socket.on("jogo_finalizado", (dados) => {
+		// console.log("Jogo finalizado recebido:", dados);
 		// Usa a mesma função de ranking, mas com a mensagem de fim de jogo
 		showFinalRanking(dados.placar);
 	}); // Erro
