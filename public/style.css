@@ -1,7 +1,7 @@
-/* public/style.css (Layout Quiz Game Arena - VERSÃO FINAL: REPLICA IMAGEM) */
+/* style.css - LIMPO E OTIMIZADO */
 
 /* ---------------------------------------------------- */
-/* 0. BASE GERAL & FONTES */
+/* 1. BASE GERAL & TYPOGRAPHY */
 /* ---------------------------------------------------- */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap");
 
@@ -25,27 +25,12 @@ body {
 	width: 95%;
 	max-width: 1000px;
 	text-align: center;
-	border: 5px solid #673ab7;
+	border: 5px solid #673ab7; /* Roxo Principal */
 	margin: 3rem auto;
 	transition: all 0.5s ease;
 }
 
-/* --- FEEDBACK VISUAL (Mantido) --- */
-.winner-flash {
-	background-color: #e8f5e9 !important;
-	border-color: #4caf50 !important;
-	box-shadow: 0 0 30px #4caf50 !important;
-}
-.loser-flash {
-	background-color: #ffebee !important;
-	border-color: #ff5252 !important;
-	box-shadow: 0 0 20px #ff5252 !important;
-}
-.response-pending {
-	opacity: 0.9;
-	box-shadow: 0 0 20px #ff9800;
-	transform: scale(0.98);
-}
+/* Títulos */
 .arena-title {
 	font-family: "Montserrat", sans-serif;
 	font-weight: 900;
@@ -58,9 +43,15 @@ body {
 	padding-bottom: 15px;
 	margin-bottom: 25px;
 }
-.emoji-note {
-	font-size: 0.8em;
+
+.section-header {
+	color: #673ab7;
+	margin-bottom: 20px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
 }
+
 .info-bar {
 	font-size: 1em;
 	color: #555;
@@ -71,7 +62,39 @@ body {
 	border: 1px dashed #ccc;
 }
 
-/* --- BOTÕES E INPUTS GERAIS (Mantido) --- */
+.separator {
+	color: #aaa;
+	margin: 20px 0;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.emoji-note {
+	font-size: 0.8em;
+}
+
+/* ---------------------------------------------------- */
+/* 2. COMPONENTES (Botões, Inputs, Feedback) */
+/* ---------------------------------------------------- */
+
+/* Inputs */
+.text-input {
+	padding: 18px;
+	border: 2px solid #673ab7;
+	border-radius: 8px;
+	background-color: white;
+	color: #333;
+	font-size: 1.1em;
+	width: 90%;
+	max-width: 350px;
+	margin-bottom: 20px;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.text-input::placeholder {
+	color: #999;
+}
+
+/* Botões Base */
 button {
 	padding: 18px 35px;
 	border: none;
@@ -90,82 +113,54 @@ button:disabled {
 	transform: none;
 	box-shadow: none !important;
 }
-.text-input {
-	padding: 18px;
-	border: 2px solid #673ab7;
-	border-radius: 8px;
-	background-color: white;
-	color: #333;
-	font-size: 1.1em;
-	width: 90%;
-	max-width: 350px;
-	margin-bottom: 20px;
-	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+button:hover:not(:disabled) {
+	transform: translateY(-3px);
 }
-.text-input::placeholder {
-	color: #999;
+button:active:not(:disabled) {
+	transform: translateY(3px);
 }
+
+/* Variantes de Botões */
 .btn-primary-arena {
-	background-color: #4caf50;
+	background-color: #4caf50; /* Verde */
 	color: white;
 	box-shadow: 0 6px 0 #388e3c;
 }
 .btn-secondary-arena {
-	background-color: #2196f3;
+	background-color: #2196f3; /* Azul */
 	color: white;
 	box-shadow: 0 6px 0 #1976d2;
 }
 .btn-start-arena,
 .btn-start-game {
-	background-color: #ff9800;
+	background-color: #ff9800; /* Laranja */
 	color: #333;
 	font-size: 1.5em;
 	width: 90%;
 	max-width: 400px;
 	box-shadow: 0 8px 0 #f57c00;
 }
-button:hover:not(:disabled) {
-	transform: translateY(-3px);
-	box-shadow: 0 10px 0 #f57c00;
-}
-button:active:not(:disabled) {
-	transform: translateY(3px);
-	box-shadow: 0 3px 0 #f57c00;
-}
 .btn-end-round {
-	background-color: #ff3b3f;
+	background-color: #ff3b3f; /* Vermelho */
 	color: white;
 	box-shadow: 0 6px 0 #d30000;
 }
-.btn-end-round:hover:not(:disabled) {
-	transform: translateY(-3px);
-	box-shadow: 0 10px 0 #d30000;
-}
-.btn-end-round:active:not(:disabled) {
-	transform: translateY(3px);
-	box-shadow: 0 3px 0 #d30000;
-}
 
-/* --- TELAS BASE (Mantido) --- */
-.arena-panel {
-	padding: 30px;
-	border: 1px solid #ddd;
-	border-radius: 12px;
-	margin-top: 25px;
-	background: #fdfdfd;
+/* Feedback Visual (Piscadas) */
+.winner-flash {
+	background-color: #e8f5e9 !important;
+	border-color: #4caf50 !important;
+	box-shadow: 0 0 30px #4caf50 !important;
 }
-.section-header {
-	color: #673ab7;
-	margin-bottom: 20px;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+.loser-flash {
+	background-color: #ffebee !important;
+	border-color: #ff5252 !important;
+	box-shadow: 0 0 20px #ff5252 !important;
 }
-.separator {
-	color: #aaa;
-	margin: 20px 0;
-	font-size: 1.2em;
-	font-weight: bold;
+.response-pending {
+	opacity: 0.9;
+	box-shadow: 0 0 20px #ff9800;
+	transform: scale(0.98);
 }
 .feedback-msg {
 	color: #d32f2f;
@@ -173,8 +168,17 @@ button:active:not(:disabled) {
 	margin-top: 15px;
 }
 
+/* Paineis */
+.arena-panel {
+	padding: 30px;
+	border: 1px solid #ddd;
+	border-radius: 12px;
+	margin-top: 25px;
+	background: #fdfdfd;
+}
+
 /* ---------------------------------------------------- */
-/* 2. HOST VIEW (LOBBY - Mantido) */
+/* 3. HOST VIEW (Lobby & Game) */
 /* ---------------------------------------------------- */
 
 .host-panel-arena {
@@ -184,6 +188,7 @@ button:active:not(:disabled) {
 	border-radius: 15px;
 	margin-top: 25px;
 }
+
 .pin-display-gigante {
 	font-family: "Montserrat", sans-serif;
 	font-weight: 900;
@@ -194,12 +199,15 @@ button:active:not(:disabled) {
 	letter-spacing: 3px;
 	margin-bottom: 40px;
 }
+
 .display-label-lg {
 	font-size: 1.8em;
 	color: #555;
 	margin: 0;
 	text-transform: uppercase;
 }
+
+/* Detalhes do Lobby (QR e Lista) */
 .host-details-container {
 	display: flex;
 	gap: 40px;
@@ -213,15 +221,8 @@ button:active:not(:disabled) {
 	background: #fff;
 	padding: 20px;
 	border-radius: 10px;
-	text-align: center;
 	border: 1px solid #ddd;
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-.detail-header {
-	color: #ff9800;
-	margin-top: 0;
-	border-bottom: 1px solid #eee;
-	padding-bottom: 10px;
 }
 .player-list {
 	list-style: none;
@@ -236,163 +237,69 @@ button:active:not(:disabled) {
 	font-size: 1.1em;
 	color: #333;
 }
-.player-list li strong {
-	color: #4caf50;
-}
-.qr-code {
-	margin: 20px auto;
-	background: white;
-	padding: 10px;
-	border-radius: 5px;
-	display: inline-block;
-}
-.qr-code p {
-	font-size: 0.8em;
-	color: #333;
-	margin-top: 10px;
-	word-break: break-all;
-}
 
-/* ---------------------------------------------------- */
-/* 3. TELA DE JOGO DO HOST (PROJETOR - REPLICAÇÃO DA IMAGEM) */
-/* ---------------------------------------------------- */
-
+/* TELA DE JOGO DO HOST (Projetor) */
 .host-game-screen {
 	display: flex;
 	flex-direction: column;
 	margin-top: 25px;
 }
 
-/* --- ÁREA PRINCIPAL DA PERGUNTA (CAIXA ROXA) --- */
 .question-projector-box {
-	/* Borda Laranja Externa na Caixa Roxa, como na imagem */
-	border-radius: 10px; /* Borda levemente arredondada */
-
-	/* Gradiente Roxo Forte */
+	border-radius: 10px;
 	background: linear-gradient(135deg, #673ab7 0%, #7e57c2 100%);
-	padding: 60px 50px 40px; /* Padding ajustado */
+	padding: 60px 50px 40px;
 	position: relative;
-	flex-grow: 1;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra mais suave */
-	z-index: 1;
-	margin: 20px; /* Espaçamento da borda externa do .host-game-screen */
-	width: auto; /* Deixa o flex-grow cuidar da largura */
+	box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+	margin: 20px;
+	color: white;
 }
 
 .question-text-host {
-	font-size: 3.5em; /* Grande como na imagem */
+	font-size: 3.5em;
 	font-weight: 900;
-	color: white;
 	margin: 0;
-	text-align: center;
-	max-width: 90%;
 	line-height: 1.3;
 }
 
-/* --- TIMER HOST (Circular e Sobreposto) --- */
+/* Timer Circular */
 .timer-display-lg {
 	position: absolute;
-	top: -35px; /* Puxa para cima para sobrepor a borda */
-	/* Ajusta a posição para o centro superior direito, como na imagem */
+	top: -35px;
 	right: 10%;
-
 	background-color: #ff9800;
 	color: white;
 	font-weight: 900;
 	font-size: 2.2em;
 	width: 80px;
 	height: 80px;
-	border-radius: 50%; /* Circular */
-
+	border-radius: 50%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-
-	border: 5px solid white; /* Borda branca grossa */
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra do Timer */
+	border: 5px solid white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 	z-index: 10;
-	transition: all 0.2s;
-}
-
-/* Remove a barra/label anterior */
-.timer-display-lg::before {
-	content: none;
 }
 
 .timer-critical {
 	background-color: #d32f2f !important;
-	box-shadow: 0 0 20px rgba(211, 47, 47, 0.8) !important;
-	border-color: white !important;
 	animation: pulse 0.5s infinite alternate;
 }
 @keyframes pulse {
 	from {
 		transform: scale(1);
-		opacity: 1;
 	}
 	to {
 		transform: scale(1.08);
-		opacity: 0.9;
 	}
 }
 
-/* --- OPÇÕES DO HOST (RESULTADOS) --- */
-/* NOTA: Não é usado diretamente, a renderização é dinâmica no client.js */
-
-.host-opcoes-grid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 20px;
-	padding: 20px 40px 40px; /* Adiciona padding para visibilidade */
-	background: #fdfdfd;
-}
-
-.host-opcao-bloco {
-	height: 110px;
-	color: white;
-	font-weight: bold;
-	font-size: 1.4em;
-	display: flex;
-	align-items: center;
-	padding: 10px 25px;
-	border-radius: 10px;
-	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-	box-shadow: 0 5px 0 rgba(0, 0, 0, 0.3);
-	border: 3px solid white;
-	transition: transform 0.1s, box-shadow 0.1s;
-}
-.host-opcao-bloco:hover {
-	transform: translateY(0);
-	box-shadow: 0 5px 0 rgba(0, 0, 0, 0.3);
-}
-
-.icone-opcao-host {
-	font-size: 2.2em;
-	margin-right: 20px;
-}
-
-.texto-opcao-host {
-	text-align: left;
-	flex-grow: 1;
-	word-break: break-word;
-	font-family: "Montserrat", sans-serif;
-	font-weight: 700;
-}
-
-/* --- CONTROLES E PLACAR GERAL (Mantido) --- */
+/* Placar Host */
 #host-placar {
 	padding: 25px;
 	border-top: 5px solid #4caf50;
 	background: #f9f9f9;
-	text-align: center;
-}
-.ranking-full-arena {
-	padding: 20px;
-	text-align: center;
 }
 .ranking-header {
 	color: #4caf50;
@@ -400,13 +307,9 @@ button:active:not(:disabled) {
 	margin-bottom: 20px;
 	text-transform: uppercase;
 }
-.host-control-strip-bottom {
-	padding-top: 20px;
-	border-top: 1px solid #ddd;
-}
 
 /* ---------------------------------------------------- */
-/* 4. TELA DE JOGO DO JOGADOR (CONTROLE - Mantido) */
+/* 4. PLAYER VIEW (Controle) */
 /* ---------------------------------------------------- */
 
 .player-control-view {
@@ -415,29 +318,20 @@ button:active:not(:disabled) {
 	margin-top: 20px;
 	background: #fdfdfd;
 }
+
 .pin-status {
 	text-align: right;
 	font-size: 1em;
 	color: #777;
 	font-weight: bold;
 }
+
 .ranking-mini {
 	background: #f9f9f9;
 	border: 2px solid #4caf50;
 	padding: 20px;
 	border-radius: 10px;
 	margin-top: 1.5rem;
-	box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
-}
-.ranking-header {
-	color: #4caf50;
-	font-weight: bold;
-	font-size: 1.4em;
-	margin-bottom: 10px;
-}
-.ranking-header strong {
-	font-size: 1.5em;
-	color: #ff9800;
 }
 .feedback-msg-score {
 	font-size: 1.5em;
@@ -446,6 +340,7 @@ button:active:not(:disabled) {
 	margin: 10px 0 0;
 }
 
+/* Grid de Opções do Jogador */
 .opcoes-grid-player {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -460,131 +355,126 @@ button:active:not(:disabled) {
 	box-shadow: 0 8px 0 rgba(0, 0, 0, 0.3);
 	color: white;
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-	transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .opcoes-grid-player button:hover:not(:disabled) {
 	transform: translateY(-4px) scale(1.02);
 	box-shadow: 0 12px 0 rgba(0, 0, 0, 0.4);
 }
-
-.opcoes-grid-player button:active:not(:disabled) {
-	transform: translateY(4px);
-	box-shadow: 0 4px 0 rgba(0, 0, 0, 0.3);
-}
-
 .texto-opcao-player {
 	font-size: 1.2em;
 	line-height: 1.2;
 }
 
-/* --- NOVO: ESTILOS PARA O RANKING FINAL DO JOGO --- */
-.ranking-final-box {
-	background: #ffffff;
-	padding: 40px;
-	border-radius: 15px;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-	max-width: 600px;
-	margin: 40px auto;
-}
+/* ---------------------------------------------------- */
+/* 5. RANKING FINAL & PÓDIO */
+/* ---------------------------------------------------- */
 
-.final-header {
-	color: #4caf50;
-	font-size: 3em;
-	margin-bottom: 10px;
-}
-
-.final-subheader {
-	color: #673ab7;
-	font-size: 1.5em;
-	border-bottom: 2px solid #eee;
-	padding-bottom: 10px;
-	margin-bottom: 20px;
-}
-
-#final-placar-lista {
-	list-style: none;
-	padding: 0;
-}
-
-#final-placar-lista li {
+/* Item da Lista de Ranking (Usado pelo Host) */
+.ranking-item {
 	display: flex;
-	justify-content: space-between;
 	align-items: center;
+	gap: 12px;
+	font-size: 1.2rem;
 	padding: 10px 0;
-	border-bottom: 1px dotted #ccc;
-	font-size: 1.3em;
-	font-weight: 700;
+	border-bottom: 1px solid #eee;
 }
 
-.rank-position {
-	width: 40px;
-	height: 40px;
+/* Bolinha da posição ou Medalha */
+.rank-badge {
 	background: #ff9800;
 	color: white;
+	width: 35px;
+	height: 35px;
 	border-radius: 50%;
 	display: flex;
-	align-items: center;
 	justify-content: center;
-	font-size: 0.9em;
-	margin-right: 15px;
+	align-items: center;
+	font-weight: bold;
+	font-size: 1rem;
+}
+.rank-badge.medal {
+	background: none !important;
+	width: auto;
+	height: auto;
+	font-size: 1.8rem; /* Medalha maior */
 }
 
-.final-score {
-	color: #2196f3;
-	font-weight: 900;
+.player-name {
+	font-weight: 600;
+}
+.player-points {
+	margin-left: auto;
+	font-weight: 700;
+	color: #2ca23a;
 }
 
-/* Destaque para o primeiro lugar */
-#final-placar-lista li:first-child .rank-position {
-	background: gold;
-	color: #333;
-	font-size: 1.2em;
-}
-
-/* (seu CSS completo aqui, igual ao que você enviou) */
-
-/* --- ESTILO DO RANKING FINAL --- */
-.ranking-final-box {
-	background: #1a1a2e;
-	border: 3px solid #4cd137;
-	padding: 25px;
-	border-radius: 12px;
-	margin-top: 25px;
+/* Tela Final do JOGADOR (Individual) */
+.player-final-box {
+	background: #ffffff;
+	border: 2px solid #8a4bff; /* Roxo */
+	border-radius: 20px;
+	padding: 40px 30px;
+	width: 85%;
+	max-width: 450px;
+	margin: 50px auto;
 	text-align: center;
+	box-shadow: 0 10px 25px rgba(138, 75, 255, 0.15);
 }
 
-.final-header {
-	font-size: 2em;
-	color: #4cd137;
-	text-shadow: 0 0 10px rgba(76, 209, 55, 0.7);
+.player-final-title {
+	font-size: 2rem;
+	font-weight: 800;
+	color: #673ab7;
+	margin-bottom: 10px;
+}
+.player-final-sub {
+	font-size: 1.1rem;
+	color: #555;
+	margin-bottom: 25px;
 }
 
-.final-subheader {
-	margin-top: -10px;
-	color: #00a8ff;
+.player-score-card {
+	background: #f5edff;
+	border: 1px solid #c8a7ff;
+	padding: 20px;
+	border-radius: 12px;
+	margin-bottom: 30px;
+}
+.score-label {
+	display: block;
+	font-size: 1rem;
+	color: #5a2bbf;
+	font-weight: 600;
+}
+.score-value {
+	font-size: 1.8rem;
+	font-weight: 900;
+	color: #673ab7;
+	margin-top: 8px;
+	display: block;
 }
 
-#final-placar-lista li {
-	padding: 12px;
-	border-bottom: 1px solid #576574;
-	font-size: 1.3em;
-	display: flex;
-	justify-content: space-between;
+/* Botão de Retorno */
+.btn-final-return {
+	background: #673ab7;
+	border: none;
+	padding: 14px 25px;
+	border-radius: 12px;
+	color: white;
+	cursor: pointer;
+	transition: 0.2s;
+	font-weight: 600;
+	width: 100%;
+	font-size: 1rem;
 }
-
-.rank-position {
-	font-weight: bold;
-	color: #ffc107;
-}
-
-.final-score {
-	color: #4cd137;
-	font-weight: bold;
+.btn-final-return:hover {
+	background: #5e35b1;
+	box-shadow: 0 4px 0 #4527a0;
+	transform: translateY(-2px);
 }
 
 /* ---------------------------------------------------- */
-/* 5. RESPONSIVIDADE (MOBILE) */
+/* 6. RESPONSIVIDADE (Mobile) */
 /* ---------------------------------------------------- */
 @media (max-width: 768px) {
 	#container {
@@ -593,10 +483,11 @@ button:active:not(:disabled) {
 		border-width: 3px;
 	}
 	.arena-title {
-		font-size: 2.5em;
+		font-size: 2.2em;
 		letter-spacing: 3px;
 	}
 
+	/* Ajuste Host Mobile */
 	.host-details-container {
 		flex-direction: column;
 		gap: 20px;
@@ -604,16 +495,18 @@ button:active:not(:disabled) {
 	.qr-section,
 	.players-section {
 		width: 100%;
-		min-width: auto;
+	}
+	.pin-display-gigante {
+		font-size: 4em;
 	}
 
+	/* Ajuste Game */
 	.opcoes-grid-player {
 		grid-template-columns: 1fr;
 		gap: 15px;
 	}
 	.opcoes-grid-player button {
 		height: 120px;
-		font-size: 1.1em;
 	}
 
 	.question-projector-box {
@@ -622,23 +515,11 @@ button:active:not(:disabled) {
 	.question-text-host {
 		font-size: 2em;
 	}
+
 	.timer-display-lg {
 		font-size: 1.8em;
 		width: 60px;
 		height: 60px;
 		top: -30px;
-	}
-	.pin-display-gigante {
-		font-size: 4em;
-		letter-spacing: 3px;
-	}
-	.host-opcoes-grid {
-		gap: 10px;
-		padding: 0 15px;
-	}
-	.host-opcao-bloco {
-		height: 90px;
-		font-size: 1.1em;
-		padding: 0 15px;
 	}
 }
