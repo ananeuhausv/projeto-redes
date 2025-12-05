@@ -32,163 +32,265 @@ console.log(`IP detectado: ${LOCAL_IP}`);
 
 // ---- CHARADAS (10 PERGUNTAS) ----
 const CHARADAS = [
-    // --- ORIGINAIS (FILMES E SÉRIES GERAIS) ---
-    {
-        pergunta: "Qual o nome do vilão principal de Harry Potter?",
-        opcoes: [
-            "Lucius Malfoy",
-            "Sirius Black",
-            "Tom Marvolo Riddle",
-            "Remo Lupin",
-        ],
-        resposta: "Tom Marvolo Riddle",
-    },
-    {
-        pergunta: "Qual é o robô icônico de Star Wars que é dourado e sempre preocupado?",
-        opcoes: ["R2-D2", "C-3PO", "BB-8", "K-2SO"],
-        resposta: "C-3PO",
-    },
-    {
-        pergunta: "Qual o nome da cidade fictícia onde se passa Stranger Things?",
-        opcoes: ["Hawkins", "Sunnydale", "Indianapolis", "Riverdale"],
-        resposta: "Hawkins",
-    },
-    {
-        pergunta: "Qual série acompanha um cientista e seu neto em aventuras interdimensionais?",
-        opcoes: ["Futurama", "Solar Opposites", "Rick and Morty", "Adventure Time"],
-        resposta: "Rick and Morty",
-    },
-    {
-        pergunta: "Qual banda liderada por Freddie Mercury é conhecida por “Bohemian Rhapsody”?",
-        opcoes: ["The Beatles", "Queen", "The Rolling Stones", "Nirvana"],
-        resposta: "Queen",
-    },
-    {
-        pergunta: "Qual é o alter ego do super-herói Homem de Ferro?",
-        opcoes: ["Steve Rogers", "Bruce Banner", "Tony Stark", "Peter Parker"],
-        resposta: "Tony Stark",
-    },
-    {
-        pergunta: "Em 'Friends', qual é o nome do café onde os personagens se reúnem?",
-        opcoes: ["MacLaren's Pub", "Central Perk", "Luke's Diner", "Monk's Café"],
-        resposta: "Central Perk",
-    },
-    {
-        pergunta: "Qual o nome do irmão de Mario na franquia de jogos da Nintendo?",
-        opcoes: ["Wario", "Luigi", "Yoshi", "Waluigi"],
-        resposta: "Luigi",
-    },
-    {
-        pergunta: "Quem foi o hobbit encarregado de levar o 'Um Anel' até a Montanha da Perdição?",
-        opcoes: ["Samwise Gamgee", "Bilbo Baggins", "Frodo Baggins", "Peregrin Took"],
-        resposta: "Frodo Baggins",
-    },
-    {
-        pergunta: "Qual é a casa de Game of Thrones cujo lema é 'O inverno está chegando'?",
-        opcoes: ["Casa Lannister", "Casa Targaryen", "Casa Stark", "Casa Baratheon"],
-        resposta: "Casa Stark",
-    },
-    {
-        pergunta: "Qual é o nome do planeta natal dos Kryptonianos, como Superman?",
-        opcoes: ["Krypton", "Vulcano", "Gallifrey", "Asgard"],
-        resposta: "Krypton",
-    },
-    {
-        pergunta: "Em 'The Matrix', qual pílula Neo toma para descobrir a verdade?",
-        opcoes: ["Pílula Azul", "Pílula Vermelha", "Pílula Verde", "Pílula Amarela"],
-        resposta: "Pílula Vermelha",
-    },
-    {
-        pergunta: "Qual é o nome do assistente virtual da Apple?",
-        opcoes: ["Alexa", "Cortana", "Siri", "Google Assistant"],
-        resposta: "Siri",
-    },
+	// --- ORIGINAIS (FILMES E SÉRIES GERAIS) ---
+	{
+		pergunta: "Qual é o nome do dono do Snoopy?",
+		opcoes: ["Charlie Brown", "Linus van Pelt", "Schroeder", "Pig-Pen"],
+		resposta: "Charlie Brown",
+	},
+	{
+		pergunta:
+			"Em 'Duna', qual é o título messiânico atribuído a Paul Atreides pelos Fremen?",
+		opcoes: ["Kwisatz Haderach", "Lisan al-Gaib", "Muad'Dib", "Mahdi"],
+		resposta: "Lisan al-Gaib",
+	},
+	{
+		pergunta: "Qual o nome do vilão principal de Harry Potter?",
+		opcoes: [
+			"Lucius Malfoy",
+			"Sirius Black",
+			"Tom Marvolo Riddle",
+			"Remo Lupin",
+		],
+		resposta: "Tom Marvolo Riddle",
+	},
+	{
+		pergunta:
+			"Qual é o robô icônico de Star Wars que é dourado e sempre preocupado?",
+		opcoes: ["R2-D2", "C-3PO", "BB-8", "K-2SO"],
+		resposta: "C-3PO",
+	},
+	{
+		pergunta:
+			"Qual personagem de 'Stranger Things' fica preso no Mundo Invertido na primeira temporada, desencadeando toda a investigação?",
+		opcoes: ["Mike Wheeler", "Lucas Sinclair", "Will Byers", "Jonathan Byers"],
+		resposta: "Will Byers",
+	},	
+	{
+		pergunta:
+			"Qual é o nome do melhor amigo de Snoopy que é um passarinho amarelo?",
+		opcoes: ["Woodstock", "Charlie Jr.", "Linus", "Feathers"],
+		resposta: "Woodstock",
+	},
+	{
+		pergunta: "Qual o nome da cidade fictícia onde se passa Stranger Things?",
+		opcoes: ["Hawkins", "Sunnydale", "Indianapolis", "Riverdale"],
+		resposta: "Hawkins",
+	},
+	{
+		pergunta:
+			"Qual série acompanha um cientista e seu neto em aventuras interdimensionais?",
+		opcoes: ["Futurama", "Solar Opposites", "Rick and Morty", "Adventure Time"],
+		resposta: "Rick and Morty",
+	},
+	{
+		pergunta:
+			"Qual banda liderada por Freddie Mercury é conhecida por “Bohemian Rhapsody”?",
+		opcoes: ["The Beatles", "Queen", "The Rolling Stones", "Nirvana"],
+		resposta: "Queen",
+	},
+	{
+		pergunta: "Qual é o alter ego do super-herói Homem de Ferro?",
+		opcoes: ["Steve Rogers", "Bruce Banner", "Tony Stark", "Peter Parker"],
+		resposta: "Tony Stark",
+	},
+	{
+		pergunta:
+			"Em 'Friends', qual é o nome do café onde os personagens se reúnem?",
+		opcoes: ["MacLaren's Pub", "Central Perk", "Luke's Diner", "Monk's Café"],
+		resposta: "Central Perk",
+	},
+	{
+		pergunta: "Qual o nome do irmão de Mario na franquia de jogos da Nintendo?",
+		opcoes: ["Wario", "Luigi", "Yoshi", "Waluigi"],
+		resposta: "Luigi",
+	},
+	{
+		pergunta:
+			"Quem foi o hobbit encarregado de levar o 'Um Anel' até a Montanha da Perdição?",
+		opcoes: [
+			"Samwise Gamgee",
+			"Bilbo Baggins",
+			"Frodo Baggins",
+			"Peregrin Took",
+		],
+		resposta: "Frodo Baggins",
+	},
+	{
+		pergunta:
+			"Qual é a casa de Game of Thrones cujo lema é 'O inverno está chegando'?",
+		opcoes: [
+			"Casa Lannister",
+			"Casa Targaryen",
+			"Casa Stark",
+			"Casa Baratheon",
+		],
+		resposta: "Casa Stark",
+	},
+	{
+		pergunta: "Qual é o nome do planeta natal dos Kryptonianos, como Superman?",
+		opcoes: ["Krypton", "Vulcano", "Gallifrey", "Asgard"],
+		resposta: "Krypton",
+	},	
+	{
+		pergunta: "Qual é a raça do Snoopy?",
+		opcoes: ["Beagle", "Bulldog", "Cocker Spaniel", "Foxhound"],
+		resposta: "Beagle",
+	},
+	{
+		pergunta: "Em 'The Matrix', qual pílula Neo toma para descobrir a verdade?",
+		opcoes: [
+			"Pílula Azul",
+			"Pílula Vermelha",
+			"Pílula Verde",
+			"Pílula Amarela",
+		],
+		resposta: "Pílula Vermelha",
+	},
+	{
+		pergunta: "Qual é o nome do assistente virtual da Apple?",
+		opcoes: ["Alexa", "Cortana", "Siri", "Google Assistant"],
+		resposta: "Siri",
+	},
 
-    // --- STRANGER THINGS ---
-    {
-        pergunta: "Qual é a comida favorita da Eleven em Stranger Things?",
-        opcoes: ["Pizza", "Hambúrguer", "Waffles (Eggos)", "Sorvete"],
-        resposta: "Waffles (Eggos)",
-    },
-    {
-        pergunta: "Qual o nome do jogo de RPG que os meninos jogam em Stranger Things?",
-        opcoes: ["Vampiro: A Máscara", "Dungeons & Dragons", "Cyberpunk 2020", "GURPS"],
-        resposta: "Dungeons & Dragons",
-    },
-    {
-        pergunta: "Como se chama a dimensão sombria e paralela de Stranger Things?",
-        opcoes: ["O Submundo", "Mundo Invertido", "Zona Fantasma", "Limbo"],
-        resposta: "Mundo Invertido",
-    },
-    {
-        pergunta: "Qual música de Kate Bush salvou a Max do Vecna?",
-        opcoes: ["Running Up That Hill", "Wuthering Heights", "Babooshka", "Cloudbusting"],
-        resposta: "Running Up That Hill",
-    },
+	// --- STRANGER THINGS ---
+	{
+		pergunta: "Qual é a comida favorita da Eleven em Stranger Things?",
+		opcoes: ["Pizza", "Hambúrguer", "Waffles (Eggos)", "Sorvete"],
+		resposta: "Waffles (Eggos)",
+	},
+	{
+		pergunta:
+			"Qual o nome do jogo de RPG que os meninos jogam em Stranger Things?",
+		opcoes: [
+			"Vampiro: A Máscara",
+			"Dungeons & Dragons",
+			"Cyberpunk 2020",
+			"GURPS",
+		],
+		resposta: "Dungeons & Dragons",
+	},
+	{
+		pergunta: "Como se chama a dimensão sombria e paralela de Stranger Things?",
+		opcoes: ["O Submundo", "Mundo Invertido", "Zona Fantasma", "Limbo"],
+		resposta: "Mundo Invertido",
+	},
+	{
+		pergunta: "Qual música de Kate Bush salvou a Max do Vecna?",
+		opcoes: [
+			"Running Up That Hill",
+			"Wuthering Heights",
+			"Babooshka",
+			"Cloudbusting",
+		],
+		resposta: "Running Up That Hill",
+	},
 
-    // --- MUNDO POP & DIVAS ---
-    {
-        pergunta: "Quem é conhecida como a 'Rainha do Pop'?",
-        opcoes: ["Britney Spears", "Lady Gaga", "Madonna", "Beyoncé"],
-        resposta: "Madonna",
-    },
-    {
-        pergunta: "Qual cantora tem uma legião de fãs chamados 'Swifties'?",
-        opcoes: ["Katy Perry", "Taylor Swift", "Ariana Grande", "Selena Gomez"],
-        resposta: "Taylor Swift",
-    },
-    {
-        pergunta: "Qual música da Miley Cyrus foi escrita como indireta para Liam Hemsworth?",
-        opcoes: ["Wrecking Ball", "Flowers", "Party in the U.S.A.", "Malibu"],
-        resposta: "Flowers",
-    },
-    {
-        pergunta: "Rihanna é a fundadora de qual marca bilionária de maquiagem?",
-        opcoes: ["Rare Beauty", "Haus Labs", "Fenty Beauty", "Kylie Cosmetics"],
-        resposta: "Fenty Beauty",
-    },
-    {
-        pergunta: "Qual artista brasileira atingiu o Top 1 Global do Spotify com 'Envolver'?",
-        opcoes: ["Ludmilla", "Anitta", "Luísa Sonza", "Ivete Sangalo"],
-        resposta: "Anitta",
-    },
-    {
-        pergunta: "Quem é a artista por trás do álbum 'Renaissance' e da turnê com cavalos prateados?",
-        opcoes: ["Beyoncé", "Rihanna", "Doja Cat", "Dua Lipa"],
-        resposta: "Beyoncé",
-    },
+	// --- MUNDO POP & DIVAS ---
+	{
+		pergunta:
+			"Qual música da Miley Cyrus foi escrita como indireta para Liam Hemsworth?",
+		opcoes: ["Wrecking Ball", "Flowers", "Party in the U.S.A.", "Malibu"],
+		resposta: "Flowers",
+	},
+	{
+		pergunta: "Rihanna é a fundadora de qual marca bilionária de maquiagem?",
+		opcoes: ["Rare Beauty", "Haus Labs", "Fenty Beauty", "Kylie Cosmetics"],
+		resposta: "Fenty Beauty",
+	},
+	{
+		pergunta:
+			"Qual artista brasileira atingiu o Top 1 Global do Spotify com 'Envolver'?",
+		opcoes: ["Ludmilla", "Anitta", "Luísa Sonza", "Ivete Sangalo"],
+		resposta: "Anitta",
+	},
+	{
+		pergunta:
+			"Quem é a artista por trás do álbum 'Renaissance' e da turnê com cavalos prateados?",
+		opcoes: ["Beyoncé", "Rihanna", "Doja Cat", "Dua Lipa"],
+		resposta: "Beyoncé",
+	},
 
-    // --- TRETAS E CULTURA POP ---
-    {
-        pergunta: "Em 2009, quem interrompeu o discurso de Taylor Swift no VMA?",
-        opcoes: ["Jay-Z", "Eminem", "Kanye West", "Justin Timberlake"],
-        resposta: "Kanye West",
-    },
-    {
-        pergunta: "Qual hit de Shakira é cheio de indiretas sobre seu ex, Piqué?",
-        opcoes: ["Hips Don't Lie", "Waka Waka", "Bzrp Music Sessions, Vol. 53", "La Tortura"],
-        resposta: "Bzrp Music Sessions, Vol. 53",
-    },
-    {
-        pergunta: "Qual o nome do filme que gerou o fenômeno 'Barbenheimer' em 2023?",
-        opcoes: ["Barbie", "Oppenheimer", "Missão Impossível", "Duna"],
-        resposta: "Barbie",
-    },
-    {
-        pergunta: "A música 'Driver's License' de Olivia Rodrigo foi supostamente sobre quem?",
-        opcoes: ["Harry Styles", "Joshua Bassett", "Shawn Mendes", "Zac Efron"],
-        resposta: "Joshua Bassett",
-    },
-    {
-        pergunta: "No BBB 21, qual participante bateu o recorde de rejeição com 99,17%?",
-        opcoes: ["Viih Tube", "Projota", "Nego Di", "Karol Conká"],
-        resposta: "Karol Conká",
-    },
-    {
-        pergunta: "Qual rede social era famosa pelos 'scraps', 'depoimentos' e comunidades?",
-        opcoes: ["MSN", "Orkut", "MySpace", "Tumblr"],
-        resposta: "Orkut",
-    },
+	// --- TRETAS E CULTURA POP ---
+	{
+		pergunta: "Em 2009, quem interrompeu o discurso de Taylor Swift no VMA?",
+		opcoes: ["Jay-Z", "Eminem", "Kanye West", "Justin Timberlake"],
+		resposta: "Kanye West",
+	},
+	{
+		pergunta: "Qual hit de Shakira é cheio de indiretas sobre seu ex, Piqué?",
+		opcoes: [
+			"Hips Don't Lie",
+			"Waka Waka",
+			"Bzrp Music Sessions, Vol. 53",
+			"La Tortura",
+		],
+		resposta: "Bzrp Music Sessions, Vol. 53",
+	},
+	{
+		pergunta:
+			"A música 'Driver's License' de Olivia Rodrigo foi supostamente sobre quem?",
+		opcoes: ["Harry Styles", "Joshua Bassett", "Shawn Mendes", "Zac Efron"],
+		resposta: "Joshua Bassett",
+	},
+	// — FATOS —
+	{
+		pergunta: "Qual é o animal terrestre mais rápido do mundo?",
+		opcoes: ["Leopardo", "Guepardo", "Cavalo árabe", "Lobo cinzento"],
+		resposta: "Guepardo",
+	},
+
+	{
+		pergunta: "Quantos continentes existem no planeta Terra?",
+		opcoes: ["5", "6", "7", "8"],
+		resposta: "7",
+	},
+
+	{
+		pergunta: "Qual é o idioma mais falado do mundo como língua materna?",
+		opcoes: ["Espanhol", "Inglês", "Hindi", "Mandarim"],
+		resposta: "Mandarim",
+	},
+
+	{
+		pergunta: "Qual é o oceano mais profundo do mundo?",
+		opcoes: ["Atlântico", "Índico", "Pacífico", "Ártico"],
+		resposta: "Pacífico",
+	},
+
+	{
+		pergunta: "Qual é o metal mais leve da tabela periódica?",
+		opcoes: ["Sódio", "Lítio", "Magnésio", "Potássio"],
+		resposta: "Lítio",
+	},
+
+	{
+		pergunta: "Qual país é conhecido como a 'Terra do Sol Nascente'?",
+		opcoes: ["Japão", "China", "Coreia do Sul", "Tailândia"],
+		resposta: "Japão",
+	},
+	{
+		pergunta: "Como as orcas são popularmente chamadas?",
+		opcoes: [
+			"Baleias-tubarão",
+			"Baleias-brancas",
+			"Baleias-assassinas",
+			"Baleias-saltadoras",
+		],
+		resposta: "Baleias-assassinas",
+	},
+	{
+		pergunta:
+			"Qual é a principal alimentação de uma orca transiente (ou 'Bigg’s killer whale')?",
+		opcoes: ["Peixes pequenos", "Lulas", "Mamíferos marinhos", "Plâncton"],
+		resposta: "Mamíferos marinhos",
+	},
+	{
+		pergunta:
+			"A orca, apesar do tamanho e do nome popular pertence a qual grupo de animais?",
+		opcoes: ["Baleias", "Tubarão-baleia", "Peixes-boi", "Golfinhos"],
+		resposta: "Golfinhos",
+	},
 ];
 
 // Shuffle Fisher-Yates — retorna nova cópia embaralhada
@@ -479,7 +581,7 @@ io.on("connection", (socket) => {
 			// Gera ordem embaralhada só uma vez ao iniciar o jogo
 			let todosIndices = [...Array(CHARADAS.length).keys()];
 			todosIndices = shuffleArray(todosIndices);
-			sala.questionOrder = todosIndices.slice(0, TOTAL_RODADAS); 
+			sala.questionOrder = todosIndices.slice(0, TOTAL_RODADAS);
 			sala.questionPointer = 0;
 			sala.perguntasUsadas = new Set(); // opcional: mantém histórico também
 

@@ -1,4 +1,4 @@
-# 🏆 Quiz Game Arena
+# 🏆 Pop Culture Quiz
 
 > **Projeto da Disciplina:** Redes de Computadores  
 > **Curso:** Sistemas de Informação - UFF (Universidade Federal Fluminense)  
@@ -6,7 +6,7 @@
 
 ## 📖 Sobre o Projeto
 
-O **Quiz Game Arena** é um jogo de perguntas e respostas (quiz) multiplayer em tempo real, inspirado na mecânica do *Kahoot!*. 
+O **Pop Culture Quiz** é um jogo de perguntas e respostas (quiz) multiplayer em tempo real, inspirado na mecânica do *Kahoot!*. 
 
 O sistema utiliza uma arquitetura **Cliente-Servidor** baseada em **WebSockets**, garantindo baixa latência na comunicação entre o **Host** (tela principal do jogo, geralmente um projetor ou PC) e os **Players** (dispositivos móveis funcionando como controles).
 
