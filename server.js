@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 const TEMPO_RODADA = 15; // 15 segundos por rodada
 const MAX_SCORE = 1000;
 const MIN_SCORE = 200;
+const TOTAL_RODADAS = 10;
 
 // ---- FUNÇÃO PARA OBTER IP LOCAL ----
 function getLocalIp() {
@@ -31,48 +32,174 @@ console.log(`IP detectado: ${LOCAL_IP}`);
 
 // ---- CHARADAS (10 PERGUNTAS) ----
 const CHARADAS = [
-	{
-		pergunta: "Qual tag HTML é usada para criar uma lista não ordenada?",
-		opcoes: ["<list>", "<li>", "<ul>", "<ol>"],
-		resposta: "<ul>",
-	},
-	{
-		pergunta:
-			"Qual método JavaScript é usado para adicionar um elemento ao final de um array?",
-		opcoes: ["push()", "pop()", "shift()", "unshift()"],
-		resposta: "push()",
-	},
-	{
-		pergunta: "Em qual ano foi lançado o primeiro iPhone?",
-		opcoes: ["2005", "2007", "2008", "2009"],
-		resposta: "2007",
-	},
-	{
-		pergunta: "Qual destes não é um tipo de dado primitivo em JavaScript?",
-		opcoes: ["string", "boolean", "object", "number"],
-		resposta: "object",
-	},
-	{
-		pergunta: "O que é, o que é: Uma corda que toca, mas não tem braço?",
-		resposta: "O violão",
-		opcoes: ["O piano", "O violão", "O microfone", "O tambor"],
-	},
-	{
-		pergunta: "O que é, o que é: Tem orelhas, mas só escuta o silêncio?",
-		resposta: "O fone de ouvido",
-		opcoes: ["O rádio", "O maestro", "O fone de ouvido", "O amplificador"],
-	},
-	{
-		pergunta: "O que é, o que é: Um som que tem clave, mas não abre porta?",
-		resposta: "A nota musical",
-		opcoes: ["A partitura", "A letra da música", "O baixo", "A nota musical"],
-	},
-	{
-		pergunta: "O que é, o que é: Serve para marcar o tempo, mas não é relógio?",
-		resposta: "O metrônomo",
-		opcoes: ["O tímpano", "O relógio de pulso", "O metrônomo", "O compasso"],
-	},
-]; // TOTAL: 10 PERGUNTAS
+    // --- ORIGINAIS (FILMES E SÉRIES GERAIS) ---
+    {
+        pergunta: "Qual o nome do vilão principal de Harry Potter?",
+        opcoes: [
+            "Lucius Malfoy",
+            "Sirius Black",
+            "Tom Marvolo Riddle",
+            "Remo Lupin",
+        ],
+        resposta: "Tom Marvolo Riddle",
+    },
+    {
+        pergunta: "Qual é o robô icônico de Star Wars que é dourado e sempre preocupado?",
+        opcoes: ["R2-D2", "C-3PO", "BB-8", "K-2SO"],
+        resposta: "C-3PO",
+    },
+    {
+        pergunta: "Qual o nome da cidade fictícia onde se passa Stranger Things?",
+        opcoes: ["Hawkins", "Sunnydale", "Indianapolis", "Riverdale"],
+        resposta: "Hawkins",
+    },
+    {
+        pergunta: "Qual série acompanha um cientista e seu neto em aventuras interdimensionais?",
+        opcoes: ["Futurama", "Solar Opposites", "Rick and Morty", "Adventure Time"],
+        resposta: "Rick and Morty",
+    },
+    {
+        pergunta: "Qual banda liderada por Freddie Mercury é conhecida por “Bohemian Rhapsody”?",
+        opcoes: ["The Beatles", "Queen", "The Rolling Stones", "Nirvana"],
+        resposta: "Queen",
+    },
+    {
+        pergunta: "Qual é o alter ego do super-herói Homem de Ferro?",
+        opcoes: ["Steve Rogers", "Bruce Banner", "Tony Stark", "Peter Parker"],
+        resposta: "Tony Stark",
+    },
+    {
+        pergunta: "Em 'Friends', qual é o nome do café onde os personagens se reúnem?",
+        opcoes: ["MacLaren's Pub", "Central Perk", "Luke's Diner", "Monk's Café"],
+        resposta: "Central Perk",
+    },
+    {
+        pergunta: "Qual o nome do irmão de Mario na franquia de jogos da Nintendo?",
+        opcoes: ["Wario", "Luigi", "Yoshi", "Waluigi"],
+        resposta: "Luigi",
+    },
+    {
+        pergunta: "Quem foi o hobbit encarregado de levar o 'Um Anel' até a Montanha da Perdição?",
+        opcoes: ["Samwise Gamgee", "Bilbo Baggins", "Frodo Baggins", "Peregrin Took"],
+        resposta: "Frodo Baggins",
+    },
+    {
+        pergunta: "Qual é a casa de Game of Thrones cujo lema é 'O inverno está chegando'?",
+        opcoes: ["Casa Lannister", "Casa Targaryen", "Casa Stark", "Casa Baratheon"],
+        resposta: "Casa Stark",
+    },
+    {
+        pergunta: "Qual é o nome do planeta natal dos Kryptonianos, como Superman?",
+        opcoes: ["Krypton", "Vulcano", "Gallifrey", "Asgard"],
+        resposta: "Krypton",
+    },
+    {
+        pergunta: "Em 'The Matrix', qual pílula Neo toma para descobrir a verdade?",
+        opcoes: ["Pílula Azul", "Pílula Vermelha", "Pílula Verde", "Pílula Amarela"],
+        resposta: "Pílula Vermelha",
+    },
+    {
+        pergunta: "Qual é o nome do assistente virtual da Apple?",
+        opcoes: ["Alexa", "Cortana", "Siri", "Google Assistant"],
+        resposta: "Siri",
+    },
+
+    // --- STRANGER THINGS ---
+    {
+        pergunta: "Qual é a comida favorita da Eleven em Stranger Things?",
+        opcoes: ["Pizza", "Hambúrguer", "Waffles (Eggos)", "Sorvete"],
+        resposta: "Waffles (Eggos)",
+    },
+    {
+        pergunta: "Qual o nome do jogo de RPG que os meninos jogam em Stranger Things?",
+        opcoes: ["Vampiro: A Máscara", "Dungeons & Dragons", "Cyberpunk 2020", "GURPS"],
+        resposta: "Dungeons & Dragons",
+    },
+    {
+        pergunta: "Como se chama a dimensão sombria e paralela de Stranger Things?",
+        opcoes: ["O Submundo", "Mundo Invertido", "Zona Fantasma", "Limbo"],
+        resposta: "Mundo Invertido",
+    },
+    {
+        pergunta: "Qual música de Kate Bush salvou a Max do Vecna?",
+        opcoes: ["Running Up That Hill", "Wuthering Heights", "Babooshka", "Cloudbusting"],
+        resposta: "Running Up That Hill",
+    },
+
+    // --- MUNDO POP & DIVAS ---
+    {
+        pergunta: "Quem é conhecida como a 'Rainha do Pop'?",
+        opcoes: ["Britney Spears", "Lady Gaga", "Madonna", "Beyoncé"],
+        resposta: "Madonna",
+    },
+    {
+        pergunta: "Qual cantora tem uma legião de fãs chamados 'Swifties'?",
+        opcoes: ["Katy Perry", "Taylor Swift", "Ariana Grande", "Selena Gomez"],
+        resposta: "Taylor Swift",
+    },
+    {
+        pergunta: "Qual música da Miley Cyrus foi escrita como indireta para Liam Hemsworth?",
+        opcoes: ["Wrecking Ball", "Flowers", "Party in the U.S.A.", "Malibu"],
+        resposta: "Flowers",
+    },
+    {
+        pergunta: "Rihanna é a fundadora de qual marca bilionária de maquiagem?",
+        opcoes: ["Rare Beauty", "Haus Labs", "Fenty Beauty", "Kylie Cosmetics"],
+        resposta: "Fenty Beauty",
+    },
+    {
+        pergunta: "Qual artista brasileira atingiu o Top 1 Global do Spotify com 'Envolver'?",
+        opcoes: ["Ludmilla", "Anitta", "Luísa Sonza", "Ivete Sangalo"],
+        resposta: "Anitta",
+    },
+    {
+        pergunta: "Quem é a artista por trás do álbum 'Renaissance' e da turnê com cavalos prateados?",
+        opcoes: ["Beyoncé", "Rihanna", "Doja Cat", "Dua Lipa"],
+        resposta: "Beyoncé",
+    },
+
+    // --- TRETAS E CULTURA POP ---
+    {
+        pergunta: "Em 2009, quem interrompeu o discurso de Taylor Swift no VMA?",
+        opcoes: ["Jay-Z", "Eminem", "Kanye West", "Justin Timberlake"],
+        resposta: "Kanye West",
+    },
+    {
+        pergunta: "Qual hit de Shakira é cheio de indiretas sobre seu ex, Piqué?",
+        opcoes: ["Hips Don't Lie", "Waka Waka", "Bzrp Music Sessions, Vol. 53", "La Tortura"],
+        resposta: "Bzrp Music Sessions, Vol. 53",
+    },
+    {
+        pergunta: "Qual o nome do filme que gerou o fenômeno 'Barbenheimer' em 2023?",
+        opcoes: ["Barbie", "Oppenheimer", "Missão Impossível", "Duna"],
+        resposta: "Barbie",
+    },
+    {
+        pergunta: "A música 'Driver's License' de Olivia Rodrigo foi supostamente sobre quem?",
+        opcoes: ["Harry Styles", "Joshua Bassett", "Shawn Mendes", "Zac Efron"],
+        resposta: "Joshua Bassett",
+    },
+    {
+        pergunta: "No BBB 21, qual participante bateu o recorde de rejeição com 99,17%?",
+        opcoes: ["Viih Tube", "Projota", "Nego Di", "Karol Conká"],
+        resposta: "Karol Conká",
+    },
+    {
+        pergunta: "Qual rede social era famosa pelos 'scraps', 'depoimentos' e comunidades?",
+        opcoes: ["MSN", "Orkut", "MySpace", "Tumblr"],
+        resposta: "Orkut",
+    },
+];
+
+// Shuffle Fisher-Yates — retorna nova cópia embaralhada
+function shuffleArray(arr) {
+	const a = arr.slice();
+	for (let i = a.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[a[i], a[j]] = [a[j], a[i]];
+	}
+	return a;
+}
 
 const salas = {};
 
@@ -114,9 +241,9 @@ function emitirLobbyAtualizado(pin) {
 
 // NEW: Encapsula encerramento do jogo (emite placar final e limpa)
 function encerrarJogo(pin) {
-	console.log("\n🚨🚨🚨 ENCERRAR JOGO FOI CHAMADO!!! PIN:", pin, "🚨🚨🚨");
-	console.log("Jogadores finais:", salas[pin]?.jogadores);
-	console.log("Status antes:", salas[pin]?.status);
+	// console.log("\n🚨🚨🚨 ENCERRAR JOGO FOI CHAMADO!!! PIN:", pin, "🚨🚨🚨");
+	// console.log("Jogadores finais:", salas[pin]?.jogadores);
+	// console.log("Status antes:", salas[pin]?.status);
 
 	const sala = salas[pin];
 	if (!sala) return;
@@ -153,17 +280,17 @@ function encerrarJogo(pin) {
 function finalizarRodada(pin) {
 	const sala = salas[pin];
 
-	console.log("\n========== DEBUG FINALIZAR RODADA ==========");
-	console.log("PIN:", pin);
-	console.log("Sala existe?", !!sala);
-	console.log("Perguntas usadas:", sala?.perguntasUsadas?.size);
-	console.log("Total de charadas:", CHARADAS.length);
-	console.log("charadaAtual existe?", !!sala?.charadaAtual);
-	console.log("Status da sala:", sala?.status);
-	console.log("Timer ativo:", !!sala?.timerInterval);
-	console.log("Timeout ativo:", !!sala?.timeoutCharada);
-	console.log("Jogadores:", Object.keys(sala?.jogadores || {}));
-	console.log("============================================\n");
+	// console.log("\n========== DEBUG FINALIZAR RODADA ==========");
+	// console.log("PIN:", pin);
+	// console.log("Sala existe?", !!sala);
+	// console.log("Perguntas usadas:", sala?.perguntasUsadas?.size);
+	// console.log("Total de charadas:", CHARADAS.length);
+	// console.log("charadaAtual existe?", !!sala?.charadaAtual);
+	// console.log("Status da sala:", sala?.status);
+	// console.log("Timer ativo:", !!sala?.timerInterval);
+	// console.log("Timeout ativo:", !!sala?.timeoutCharada);
+	// console.log("Jogadores:", Object.keys(sala?.jogadores || {}));
+	// console.log("============================================\n");
 
 	if (!sala || !sala.charadaAtual) return; // 1. Processa as pontuações ADIADAS (só acertos)
 
@@ -190,8 +317,8 @@ function finalizarRodada(pin) {
 	sala.charadaAtual = null; // 3. Verifica se a próxima rodada deve ser a última ou o fim do jogo
 
 	// If all questions used, end the game instead of scheduling a new round
-	if (sala.perguntasUsadas.size >= CHARADAS.length) {
-		console.log("⚠️ TODAS AS PERGUNTAS FORAM USADAS! Chamando encerrarJogo()");
+	if (sala.perguntasUsadas.size >= sala.questionOrder.length) {
+		// console.log("⚠️ TODAS AS PERGUNTAS FORAM USADAS! Chamando encerrarJogo()");
 
 		// Schedule final scoreboard emission after brief pause for last-round placar view
 		sala.timeoutCharada = setTimeout(() => {
@@ -242,38 +369,25 @@ function iniciarNovaRodada(pin) {
 
 	if (Object.keys(sala.jogadores).length === 0) return;
 
-	// FIX: se todas as perguntas já foram usadas, encerra o jogo em vez de tentar escolher uma nova
-	if (sala.perguntasUsadas.size >= CHARADAS.length) {
+	// Safety: se já percorremos todas as perguntas -> encerra o jogo
+	if (
+		!Array.isArray(sala.questionOrder) ||
+		sala.questionPointer >= sala.questionOrder.length
+	) {
 		encerrarJogo(pin);
 		return;
 	}
 
-	let charadaIndex;
-	let charada;
+	// Pega o índice da pergunta a partir da ordem pré-gerada
+	const charadaIndex = sala.questionOrder[sala.questionPointer];
+	const charada = CHARADAS[charadaIndex];
 
-	// Safety guard: try a limited number of times to pick a new index
-	let attempts = 0;
-	do {
-		charadaIndex = Math.floor(Math.random() * CHARADAS.length);
-		charada = CHARADAS[charadaIndex];
-		attempts++;
-		// If somehow we tried too many times, break and find deterministic unused index
-		if (attempts > 50) {
-			// deterministic fallback: pick first unused
-			for (let i = 0; i < CHARADAS.length; i++) {
-				if (!sala.perguntasUsadas.has(i)) {
-					charadaIndex = i;
-					charada = CHARADAS[i];
-					break;
-				}
-			}
-			break;
-		}
-	} while (sala.perguntasUsadas.has(charadaIndex));
-
-	// Incrementa a contagem de rodadas (Apenas para informação, o limite é o CHARADAS.length)
-	sala.rodada++;
+	// marca como usada e avança ponteiro
 	sala.perguntasUsadas.add(charadaIndex);
+	sala.questionPointer++;
+
+	// Incrementa a contagem de rodadas
+	sala.rodada++;
 
 	sala.charadaAtual = {
 		pergunta: charada.pergunta,
@@ -318,7 +432,8 @@ io.on("connection", (socket) => {
 			perguntasUsadas: new Set(), // Histórico de perguntas
 			respostasDaRodada: [], // Armazena acertos para processar no final
 			status: "LOBBY",
-			rodada: 0,
+			questionOrder: [],
+			questionPointer: 0,
 		};
 
 		socket.join(pin);
@@ -360,10 +475,18 @@ io.on("connection", (socket) => {
 		const sala = salas[pin];
 		if (sala && sala.hostId === socket.id) {
 			sala.status = "IN_GAME";
+
+			// Gera ordem embaralhada só uma vez ao iniciar o jogo
+			let todosIndices = [...Array(CHARADAS.length).keys()];
+			todosIndices = shuffleArray(todosIndices);
+			sala.questionOrder = todosIndices.slice(0, TOTAL_RODADAS); 
+			sala.questionPointer = 0;
+			sala.perguntasUsadas = new Set(); // opcional: mantém histórico também
+
 			io.to(pin).emit("jogo_iniciado");
 			iniciarNovaRodada(pin);
 		}
-	}); // --- FINALIZAR RODADA MANUALMENTE (PARA O HOST) ---
+	});
 
 	socket.on("finalizar_rodada_host", (pin) => {
 		const sala = salas[pin];
