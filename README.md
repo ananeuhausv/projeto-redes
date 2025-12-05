@@ -52,40 +52,30 @@ Abra o terminal (Prompt de Comando ou PowerShell) na pasta do projeto e execute:
 
 ```bash
 npm install
+```
+Isso instalará todas as dependências listadas no package.json, como o express e o socket.io listados no projeto.
 
-Siga os passos abaixo para executar o servidor na sua máquina:
+### 3. Iniciar o Servidor
+No terminal, execute o comando:
 
-1. Clonar ou Baixar o Projeto
-Faça o download dos arquivos para uma pasta em seu computador.
+```bash
+node server.js
+```
+Isso iniciará o servidor. 
 
-2. Instalar Dependências
-Abra o terminal (Prompt de Comando ou PowerShell) na pasta do projeto e execute:
-
-Bash
-
-npm install
-Isso instalará o express e o socket.io listados no projeto.
-
-3. Iniciar o Servidor
-No terminal, execute:
-
-Bash
-
-node server.js´´´
-4. Acessar o Jogo
+### 4. Acessar o Jogo
 O terminal exibirá uma mensagem como:
-
+```bash
 Servidor rodando em http://192.168.x.x:3000
+```
+**Para o HOST (Tela Principal):**
+ Abra esse endereço no navegador do seu computador/notebook (preferencialmente Chrome ou Edge).
+**Clique em "Criar Nova Partida (Host)"**.
 
-Para o HOST (Tela Principal): Abra esse endereço no navegador do seu computador/notebook (preferencialmente Chrome ou Edge). Clique em "Criar Nova Partida (Host)".
-
-Para os PLAYERS (Celulares):
-
-Certifique-se de que o celular está conectado na mesma rede Wi-Fi do computador.
-
-Escaneie o QR Code exibido na tela do Host ou digite o endereço IP e a porta no navegador do celular.
-
-Insira o PIN exibido na tela do Host.
+**Para os PLAYERS (Celulares):**
+Certifique-se de que o celular está conectado à **mesma rede Wi-Fi** do computador.
+Escaneie o **QR Code** exibido na tela do Host **ou** digite o endereço IP e a porta no navegador do celular.
+Insira o **PIN** exibido na tela do Host.
 
 ## 🎮 Como Jogar
 
